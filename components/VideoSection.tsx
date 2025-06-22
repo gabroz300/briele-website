@@ -161,9 +161,7 @@ const VideoPlayer = ({ src }: VideoPlayerProps) => {
           playsInline
           preload="metadata" // Lo manteniamo come fallback/suggerimento
           className="w-full h-full object-cover"
-        >
-          <source src="/videos/islanda.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="absolute bottom-4 right-4 z-10 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
           <button
             onClick={handlePlayInteraction}
