@@ -1,10 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+<<<<<<< HEAD
   // Disabilita ESLint durante il build per evitare errori di linting
   eslint: {
     ignoreDuringBuilds: true,
   },
+=======
+>>>>>>> bedb066 (Initial commit - Briele website)
   // Ottimizzazioni per performance
   experimental: {
     optimizePackageImports: ['framer-motion', 'react-icons'],
