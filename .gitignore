@@ -47,7 +47,7 @@ next-env.d.ts
 /public/covers/*.jpeg
 
 # Keep compressed versions
-!/public/videos/islanda_compressed.mp4
+!/public/videos/islanda.mp4
 !/public/audio/riser_black.wav
 !/public/covers/lenti.png
 !/public/covers/roja.png
