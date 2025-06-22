@@ -8,12 +8,12 @@ export default function Home() {
   return (
     <>
       <AnimatedOceanBackground />
-      <main className="flex flex-col relative z-10">
+      <div className="flex flex-col relative z-10">
         <Hero />
         <MusicSection />
         <VideoSection />
         <SocialLinks />
-      </main>
+      </div>
     </>
   );
 }
