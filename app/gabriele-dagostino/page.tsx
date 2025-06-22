@@ -113,12 +113,6 @@ export default function GabrieleDagostinoPage() {
           <SectionTitle icon={FiMail} title="Contatti" />
           <ContactForm />
         </Section>
-        
-        <footer className="py-12 text-center text-gray-500">
-           <Link href="/" className="hover:text-white transition-colors">
-              Torna alla Home
-           </Link>
-        </footer>
       </main>
     </div>
   );
