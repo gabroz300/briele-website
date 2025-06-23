@@ -427,18 +427,6 @@ export default function BrielePage() {
         />
       </div>
 
-      <div className="fixed top-4 left-4 z-50">
-        <Link href="/" passHref>
-          <motion.div 
-            className="flex items-center space-x-2 text-white/50 hover:text-white transition-colors duration-300 cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-          >
-            <FiHome />
-            <span className="text-sm font-light hidden sm:inline">Home</span>
-          </motion.div>
-        </Link>
-      </div>
-
       <DeepMeter sections={sections} activeSection={activeSection} />
       
       <CosmicParticles />
@@ -456,7 +444,7 @@ export default function BrielePage() {
             {section.id === 'hero' ? (
               <div className="relative isolate px-6 pt-14 lg:px-8 text-center">
                 <div className="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
-                  <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                  <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl pb-2">
                     <motion.div
                       animate={{
                         filter: [

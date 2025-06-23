@@ -27,65 +27,65 @@ const tracks: Track[] = [
     id: 'lenti',
     title: 'Lenti',
     cover: '/covers/lenti.png',
-    year: 2024,
+    year: 2025,
     links: {
-      spotify: 'https://open.spotify.com/track/...',
-      appleMusic: 'https://music.apple.com/...',
-      itunes: 'https://itunes.apple.com/...',
-      amazonMusic: 'https://music.amazon.com/...',
-      deezer: 'https://www.deezer.com/...',
+      spotify: 'https://open.spotify.com/album/4GUiVyIgpiUXI3YnnnolXZ',
+      appleMusic: 'https://music.apple.com/us/album/lenti-single/1803686736?uo=4',
+      itunes: 'https://music.apple.com/us/album/lenti-single/1803686736?uo=4&app=itunes&at=1001lry3&ct=dashboard',
+      amazonMusic: 'https://amazon.com/music/player/albums/B0F2572KGR?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_BaQQTpp9Ta3FJf6yXsiE5OGQQ',
+      deezer: 'https://www.deezer.com/album/731072811',
     }
   },
   {
     id: 'roja',
     title: 'Roja',
     cover: '/covers/roja.png',
-    year: 2024,
+    year: 2025,
     links: {
-      spotify: 'https://open.spotify.com/track/...',
-      appleMusic: 'https://music.apple.com/...',
-      itunes: 'https://itunes.apple.com/...',
-      amazonMusic: 'https://music.amazon.com/...',
-      deezer: 'https://www.deezer.com/...',
+      spotify: 'https://open.spotify.com/album/43kbGd7ygUUvuLfdLhOAZx',
+      appleMusic: 'https://music.apple.com/us/album/roja-single/1791443679?uo=4',
+      itunes: 'https://music.apple.com/us/album/roja-single/1791443679?uo=4&app=itunes&at=1001lry3&ct=dashboard',
+      amazonMusic: 'https://amazon.com/music/player/albums/B0DTCSGQ6B?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_i3PeE81M8v1HTLaGb5fcLoBmy',
+      deezer: 'https://www.deezer.com/album/699524411',
     }
   },
   {
     id: 'stare-meglio',
     title: 'Stare Meglio',
-    cover: '/covers/stare-bene.jpg',
-    year: 2023,
+    cover: '/covers/stare-meglio.jpg',
+    year: 2024,
     links: {
-      spotify: 'https://open.spotify.com/track/...',
-      appleMusic: 'https://music.apple.com/...',
-      itunes: 'https://itunes.apple.com/...',
-      amazonMusic: 'https://music.amazon.com/...',
-      deezer: 'https://www.deezer.com/...',
+      spotify: 'https://open.spotify.com/album/3vZQ4MvVhmbSMKLKf7kq6u',
+      appleMusic: 'https://music.apple.com/us/album/stare-meglio-single/1769901051?uo=4',
+      itunes: 'https://music.apple.com/us/album/stare-meglio-single/1769901051?uo=4&app=itunes&at=1001lry3&ct=dashboard',
+      amazonMusic: 'https://amazon.com/music/player/albums/B0DHMKGCKL?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_1ODDEAknhSi2OgrznwxbwMndI',
+      deezer: 'https://www.deezer.com/album/646797551',
     }
   },
   {
     id: 'stare-male',
     title: 'Stare Male',
-    cover: '/covers/stare-bene.jpg',
-    year: 2023,
+    cover: '/covers/stare-male.jpg',
+    year: 2024,
     links: {
-      spotify: 'https://open.spotify.com/track/...',
-      appleMusic: 'https://music.apple.com/...',
-      itunes: 'https://itunes.apple.com/...',
-      amazonMusic: 'https://music.amazon.com/...',
-      deezer: 'https://www.deezer.com/...',
+      spotify: 'https://open.spotify.com/album/62gMFYp7rJmP7CA2nzlRWg',
+      appleMusic: 'https://music.apple.com/us/album/stare-male-single/1760988853?uo=4',
+      itunes: 'https://music.apple.com/us/album/stare-male-single/1760988853?uo=4&app=itunes&at=1001lry3&ct=dashboard',
+      amazonMusic: 'https://amazon.com/music/player/tracks/B0DC1MTGBL?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_tLksTPBLj92pxtsYasQ1ECuB8',
+      deezer: 'https://www.deezer.com/album/624405711',
     }
   },
   {
     id: 'stare-bene',
     title: 'Stare Bene',
     cover: '/covers/stare-bene.jpg',
-    year: 2023,
+    year: 2024,
     links: {
-      spotify: 'https://open.spotify.com/track/...',
-      appleMusic: 'https://music.apple.com/...',
-      itunes: 'https://itunes.apple.com/...',
-      amazonMusic: 'https://music.amazon.com/...',
-      deezer: 'https://www.deezer.com/...',
+      spotify: 'https://open.spotify.com/album/09DddfcqkdyxHcZJ9zNBX2',
+      appleMusic: 'https://music.apple.com/us/album/stare-bene-single/1757269986?uo=4',
+      itunes: 'https://music.apple.com/us/album/stare-bene-single/1757269986?uo=4&app=itunes&at=1001lry3&ct=dashboard',
+      amazonMusic: 'http://www.amazon.com/gp/product/B0D9CC9RP3',
+      deezer: 'https://www.deezer.com/album/615238952',
     }
   }
 ];
@@ -225,21 +225,6 @@ export default function DiscografiaPage() {
         <CosmicPurpleBackground />
       </div>
 
-      {/* Back to home */}
-      <div className="fixed top-4 left-4 z-50">
-        <Link href="/" passHref>
-          <motion.div 
-            className="flex items-center space-x-2 text-white/50 hover:text-white transition-colors duration-300 cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-            </svg>
-            <span className="text-sm font-light hidden sm:inline">Home</span>
-          </motion.div>
-        </Link>
-      </div>
-
       {/* Main content */}
       <main className="relative z-10 pt-20 pb-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -250,7 +235,7 @@ export default function DiscografiaPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 mb-6">
+            <h1 className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 mb-6 pb-2">
               Discografia
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto">
