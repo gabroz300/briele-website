@@ -1,20 +1,16 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next-intl/navigation';
-import { useTransition } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function LanguageSwitcher() {
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e.target.value;
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
+    const newPath = pathname.startsWith(`/${locale}`) ? pathname.substring(`/${locale}`.length) : pathname;
+    window.location.href = `/${nextLocale}${newPath || '/'}`;
   };
 
   return (
@@ -22,7 +18,6 @@ export default function LanguageSwitcher() {
       <select
         defaultValue={locale}
         onChange={onSelectChange}
-        disabled={isPending}
         className="bg-transparent text-white border border-white/30 rounded-md py-1 px-2 appearance-none cursor-pointer"
       >
         <option value="it" className="bg-black">IT</option>

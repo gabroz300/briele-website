@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
+import { PropsWithChildren } from "react";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -34,13 +35,14 @@ export const viewport: Viewport = {
   themeColor: "#0f1c47",
 };
 
+type RootLayoutProps = PropsWithChildren<{
+  params: { locale: string };
+}>;
+
 export default async function RootLayout({
   children,
   params: {locale}
-}: {
-  children: React.ReactNode;
-  params: {locale: string};
-}) {
+}: RootLayoutProps) {
   const messages = await getMessages();
 
   return (

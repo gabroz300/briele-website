@@ -1,9 +1,10 @@
 import React from 'react';
 import { FiUser, FiBookOpen, FiTool, FiMail, FiStar, FiCode, FiTrendingUp, FiGlobe } from 'react-icons/fi';
-import { ContactForm } from '../../components/ContactForm';
-import { CosmicParticles } from '../../components/CosmicParticles';
+import { ContactForm } from '@/components/ContactForm';
+import { CosmicParticles } from '@/components/CosmicParticles';
 import Link from 'next/link';
-import { MotionDiv } from '../../components/MotionDiv';
+import { MotionDiv } from '@/components/MotionDiv';
+import { useTranslations } from 'next-intl';
 
 const Section = ({ children, className }: { children: React.ReactNode, className?: string }) => (
   <MotionDiv
@@ -32,6 +33,30 @@ const SkillCard = ({ title, content }: { title: string, content: React.ReactNode
 );
 
 export default function GabrieleDagostinoPage() {
+  const t = useTranslations('GabrieleDagostino');
+  const tContact = useTranslations('ContactForm');
+
+  const skills = [
+    <SkillCard title="Produzione Musicale" content={
+      <p>Composizione, arrangiamento, registrazione, editing, mix e mastering. Utilizzo professionale di Logic Pro, Komplete, Waves, FabFilter, Omnisphere, Keyscape, e altri strumenti.</p>
+    } />,
+    <SkillCard title="Sviluppo e Tecnologie Creative" content={
+      <>
+        <p>Esperienza in sviluppo con Python, Next.js e React.</p>
+        <p>Ha realizzato software originali per la visualizzazione in tempo reale di musica tramite luce e colore, integrando intelligenza artificiale, frequenze e concetti psicologici.</p>
+      </>
+    } />,
+    <SkillCard title="Project & Content Management" content={
+      <p>Scrittura creativa, coordinamento tecnico, gestione di progetti complessi, branding, copywriting, storytelling e strategia digitale.</p>
+    } />,
+    <SkillCard title="Lingue" content={
+      <ul className="list-disc list-inside">
+        <li>Italiano (madrelingua)</li>
+        <li>Inglese (ottimo)</li>
+      </ul>
+    } />
+  ];
+
   return (
     <div className="min-h-screen text-white relative overflow-hidden">
       <div className="fixed inset-0 -z-20 bg-[#05010a]" />
@@ -88,30 +113,21 @@ export default function GabrieleDagostinoPage() {
         <Section>
           <SectionTitle icon={FiTool} title="Competenze" />
           <div className="grid md:grid-cols-2 gap-8">
-            <SkillCard title="Produzione Musicale" content={
-              <p>Composizione, arrangiamento, registrazione, editing, mix e mastering. Utilizzo professionale di Logic Pro, Komplete, Waves, FabFilter, Omnisphere, Keyscape, e altri strumenti.</p>
-            } />
-            <SkillCard title="Sviluppo e Tecnologie Creative" content={
-              <>
-                <p>Esperienza in sviluppo con Python, Next.js e React.</p>
-                <p>Ha realizzato software originali per la visualizzazione in tempo reale di musica tramite luce e colore, integrando intelligenza artificiale, frequenze e concetti psicologici.</p>
-              </>
-            } />
-            <SkillCard title="Project & Content Management" content={
-              <p>Scrittura creativa, coordinamento tecnico, gestione di progetti complessi, branding, copywriting, storytelling e strategia digitale.</p>
-            } />
-            <SkillCard title="Lingue" content={
-              <ul className="list-disc list-inside">
-                <li>Italiano (madrelingua)</li>
-                <li>Inglese (ottimo)</li>
-              </ul>
-            } />
+            {skills}
           </div>
         </Section>
 
         <Section>
-          <SectionTitle icon={FiMail} title="Contatti" />
-          <ContactForm />
+          <SectionTitle icon={FiMail} title={t('contact_title')} />
+          <ContactForm dictionary={{
+            name: tContact('name'),
+            email: tContact('email'),
+            message: tContact('message'),
+            send: tContact('send'),
+            sending: tContact('sending'),
+            success: tContact('success'),
+            error: tContact('error'),
+          }} />
         </Section>
       </main>
     </div>

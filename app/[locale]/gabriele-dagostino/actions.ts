@@ -3,7 +3,7 @@
 import { createTransport } from 'nodemailer';
 
 export interface FormState {
-  success: boolean;
+  status: 'idle' | 'success' | 'error';
   message: string;
 }
 
@@ -13,7 +13,7 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
   const message = formData.get('message') as string;
 
   if (!name || !email || !message) {
-    return { success: false, message: 'Tutti i campi sono obbligatori.' };
+    return { status: 'error', message: 'Tutti i campi sono obbligatori.' };
   }
   
   // Create a transporter object using SMTP transport
@@ -43,9 +43,9 @@ export async function sendEmail(prevState: FormState, formData: FormData): Promi
       `,
     });
 
-    return { success: true, message: 'Email inviata con successo!' };
+    return { status: 'success', message: 'Email inviata con successo!' };
   } catch (error) {
     console.error('Errore nell\'invio dell\'email:', error);
-    return { success: false, message: 'Errore nell\'invio dell\'email. Riprova più tardi.' };
+    return { status: 'error', message: 'Errore nell\'invio dell\'email. Riprova più tardi.' };
   }
 } 

@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiExternalLink } from 'react-icons/fi';
 import { FaSpotify, FaApple, FaAmazon, FaDeezer } from 'react-icons/fa';
 import { SiItunes } from 'react-icons/si';
-import CosmicPurpleBackground from '../../components/CosmicPurpleBackground';
+import CosmicPurpleBackground from '@/components/CosmicPurpleBackground';
 import Link from 'next/link';
+import { useTranslations } from "next-intl";
 
 interface Track {
   id: string;

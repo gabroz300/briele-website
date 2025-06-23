@@ -2,12 +2,12 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import DecryptedText from "../../components/DecryptedText";
+import DecryptedText from '@/components/DecryptedText';
 import { FiArrowDown, FiMusic, FiDroplet, FiZap, FiHeart, FiEye, FiCompass, FiGrid, FiHome } from "react-icons/fi";
 import Link from "next/link";
 import { useInView } from 'react-intersection-observer';
 import React from "react";
-import CosmicPurpleBackground from "../../components/CosmicPurpleBackground";
+import CosmicPurpleBackground from '@/components/CosmicPurpleBackground';
 
 interface ScrollObserverInstance {
   direction: 'up' | 'down';

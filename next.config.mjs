@@ -1,9 +1,8 @@
-import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   // Disabilita ESLint durante il build per evitare errori di linting
   eslint: {
     ignoreDuringBuilds: true,
