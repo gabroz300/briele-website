@@ -92,6 +92,7 @@ const tracks: Track[] = [
 ];
 
 const StreamingPopup = ({ track, isOpen, onClose }: { track: Track; isOpen: boolean; onClose: () => void }) => {
+  const t = useTranslations('DiscographyPage');
   const streamingServices = [
     { name: 'Spotify', icon: FaSpotify, link: track.links.spotify, color: 'text-green-400' },
     { name: 'Apple Music', icon: FaApple, link: track.links.appleMusic, color: 'text-pink-400' },
@@ -133,6 +134,7 @@ const StreamingPopup = ({ track, isOpen, onClose }: { track: Track; isOpen: bool
             <h3 className="text-2xl font-bold text-white mb-6 text-center">
               {track.title}
             </h3>
+            <p className="text-center text-sm text-gray-300 mb-6 -mt-4">{t('listen_on')}</p>
 
             {/* Streaming links */}
             <div className="space-y-4">
@@ -160,6 +162,7 @@ const StreamingPopup = ({ track, isOpen, onClose }: { track: Track; isOpen: bool
 };
 
 const TrackCard = ({ track, onOpenPopup }: { track: Track; onOpenPopup: (track: Track) => void }) => {
+  const t = useTranslations('DiscographyPage');
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -194,7 +197,7 @@ const TrackCard = ({ track, onOpenPopup }: { track: Track; onOpenPopup: (track: 
         {/* Track info */}
         <div className="p-6">
           <h3 className="text-xl font-bold text-white mb-2">{track.title}</h3>
-          <p className="text-gray-400">{track.year}</p>
+          <p className="text-gray-400">{t('released_on')} {track.year}</p>
         </div>
 
         {/* Glow effect */}
@@ -207,6 +210,7 @@ const TrackCard = ({ track, onOpenPopup }: { track: Track; onOpenPopup: (track: 
 export default function DiscografiaPage() {
   const [selectedTrack, setSelectedTrack] = useState<Track | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const t = useTranslations('DiscographyPage');
 
   const handleOpenPopup = (track: Track) => {
     setSelectedTrack(track);
@@ -219,43 +223,28 @@ export default function DiscografiaPage() {
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden">
-      {/* Background */}
-      <div className="fixed inset-0 -z-20 bg-[#05010a]" />
-      <div className="fixed inset-0 -z-10">
-        <CosmicPurpleBackground />
-      </div>
-
-      {/* Main content */}
-      <main className="relative z-10 pt-20 pb-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 mb-6 pb-2">
-              Discografia
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto">
-              Esplora la musica di Briele attraverso tutti i brani pubblicati
-            </p>
-          </motion.div>
-
-          {/* Tracks grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {tracks.map((track, index) => (
-              <TrackCard
-                key={track.id}
-                track={track}
-                onOpenPopup={handleOpenPopup}
-              />
-            ))}
-          </div>
+    <div className="relative min-h-screen text-white">
+      <CosmicPurpleBackground />
+      <div className="relative z-10 container mx-auto px-4 py-24 sm:py-32">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl font-bold text-center mb-16 text-white"
+        >
+          {t('title')}
+        </motion.h1>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {tracks.map((track, index) => (
+            <TrackCard
+              key={track.id}
+              track={track}
+              onOpenPopup={handleOpenPopup}
+            />
+          ))}
         </div>
-      </main>
+      </div>
 
       {/* Streaming popup */}
       {selectedTrack && (

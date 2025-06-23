@@ -1,29 +1,64 @@
 {
   "Header": {
-    "navHome": "Home",
-    "navBriele": "Briele",
-    "navGabriele": "Gabriele D'Agostino",
-    "navDiscography": "Discography"
+    "home": "Home",
+    "briele": "Briele",
+    "discography": "Discography",
+    "gabriele": "Gabriele D'Agostino"
   },
   "Footer": {
     "rights": "All rights reserved."
   },
   "Hero": {
     "title": "Briele",
-    "decrypting": "Decrypting Briele"
+    "subtitle": "is a vision"
   },
-  "MusicSection": {
-    "title": "Music"
-  },
-  "VideoSection": {
-    "title": "Video",
-    "journey": "Iceland - Ambient Journey"
-  },
-  "SocialLinks": {
-    "title": "Social"
+  "BrielePage": {
+    "title_part1": "Briele is a",
+    "title_part2": "vision",
+    "p1": "An artistic project born from the awareness that music, color, and light are a single entity, interconnected frequencies on a universal scale.",
+    "p2": "It's a journey into the world of frequencies, where every note, every nuance of color, and every glimmer of light tells a story, evokes an emotion, and opens a door to unexplored dimensions of perception.",
+    "p3": "Briele is not just about listening, but about seeing the music and hearing the colors.",
+    "p4": "A unique sensory experience that invites you to go beyond the boundaries of ordinary perception to explore the deep and mysterious connection that binds everything.",
+    "section_title_1": "The Music",
+    "section_title_2": "The Colors",
+    "section_title_3": "The Light",
+    "section_title_4": "The Frequencies",
+    "section_title_5": "The Emotions",
+    "section_title_6": "The Perception",
+    "section_title_7": "The Connection",
+    "section_title_8": "The Universe",
+    "section_title_9": "Briele",
+    "back_home": "Back to Home"
   },
   "DiscographyPage": {
     "title": "Discography",
-    "description": "Explore the music of Briele through all the published tracks"
+    "released_on": "Released on",
+    "listen_on": "Listen on"
+  },
+  "GabrieleDagostinoPage": {
+    "bio_title": "Biography",
+    "bio_p1": "Gabriele d'Agostino, known as Briele, is a producer and creative technologist. He has worked with major brands and artists such as Jovanotti, Elisa, and Laura Pausini. Founder of the Briele project, he explores the synesthetic connection between sound, color, and light through music and technology.",
+    "bio_p2": "His background includes in-depth studies in music production, composition, and creative coding, with a constant focus on innovation and emotional engagement.",
+    "skills_title": "Skills",
+    "skill_1_title": "Music Production",
+    "skill_1_content": "Composition, arrangement, recording, editing, mixing, and mastering. Professional use of Logic Pro, Komplete, Waves, FabFilter, Omnisphere, Keyscape, and other tools.",
+    "skill_2_title": "Development and Creative Technologies",
+    "skill_2_content_1": "Experience in development with Python, Next.js, and React.",
+    "skill_2_content_2": "He has created original software for real-time music visualization through light and color, integrating artificial intelligence, frequencies, and psychological concepts.",
+    "skill_3_title": "Project & Content Management",
+    "skill_3_content": "Creative writing, technical coordination, complex project management, branding, copywriting, storytelling, and digital strategy.",
+    "skill_4_title": "Languages",
+    "skill_4_content_1": "Italian (native)",
+    "skill_4_content_2": "English (excellent)",
+    "contact_title": "Contact"
+  },
+  "ContactForm": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again later."
   }
 } 

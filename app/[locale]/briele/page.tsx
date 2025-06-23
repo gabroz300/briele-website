@@ -2,23 +2,33 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import DecryptedText from '@/components/DecryptedText';
+import DecryptedText from "@/components/DecryptedText";
 import { FiArrowDown, FiMusic, FiDroplet, FiZap, FiHeart, FiEye, FiCompass, FiGrid, FiHome } from "react-icons/fi";
 import Link from "next/link";
 import { useInView } from 'react-intersection-observer';
 import React from "react";
-import CosmicPurpleBackground from '@/components/CosmicPurpleBackground';
+import CosmicPurpleBackground from "@/components/CosmicPurpleBackground";
+import { useTranslations } from "next-intl";
+
+const getSections = (t: (key: string) => string) => [
+  { id: 'hero', title: t('section_title_9'), subtitle: t('p1') + " " + t('p2') + " " + t('p3') + " " + t('p4'), icon: FiHome, content: null, visual: null },
+  { id: 'frequencies', title: t('section_title_4'), icon: FiHeart, content: "Ogni elemento dell'universo, visibile o invisibile, vibra a una propria frequenza. La musica di Briele è una traduzione emotiva di queste vibrazioni, un ponte tra il mondo fisico e quello spirituale.", visual: <div className="w-full h-64 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-lg" /> },
+  { id: 'colors', title: t('section_title_2'), icon: FiDroplet, content: "I colori sono la manifestazione visibile delle frequenze. Nel progetto Briele, ogni traccia è associata a una palette cromatica specifica, studiata per amplificare l'impatto emotivo della musica.", visual: <div className="w-full h-64 bg-red-500" /> },
+  { id: 'light', title: t('section_title_3'), icon: FiZap, content: "La luce è energia, informazione. È il veicolo attraverso cui i colori e le frequenze si rivelano. Le performance live di Briele sono un bagno di luce, un'immersione totale in un paesaggio visivo che danza in sincrono con la musica.", visual: <div className="w-full h-64 bg-yellow-500" /> },
+  { id: 'emotions', title: t('section_title_5'), icon: FiEye, content: "Le emozioni sono il linguaggio universale che Briele utilizza per comunicare. Ogni composizione è un'esplorazione di uno stato d'animo, un invito a connettersi con la parte più profonda di sé.", visual: <div className="w-full h-64 bg-green-500" /> },
+  { id: 'perception', title: t('section_title_6'), icon: FiCompass, content: "Briele sfida i limiti della percezione sensoriale, spingendo l'ascoltatore a 'vedere' i suoni e 'sentire' i colori. Un'esperienza sinestetica che apre la mente a nuove realtà.", visual: <div className="w-full h-64 bg-blue-500" /> },
+  { id: 'connection', title: t('section_title_7'), icon: FiGrid, content: "Siamo tutti connessi. Le frequenze, i colori, la luce, le emozioni, sono fili invisibili che ci legano gli uni agli altri e all'universo. La musica di Briele è una celebrazione di questa connessione universale.", visual: <div className="w-full h-64 bg-indigo-500" /> },
+  { id: 'universe', title: t('section_title_8'), icon: FiHome, content: "L'universo è un'immensa sinfonia di frequenze. Briele è un tentativo di catturare un frammento di questa melodia cosmica e di condividerla con il mondo.", visual: <div className="w-full h-64 bg-violet-500" /> }
+];
 
 interface ScrollObserverInstance {
-  direction: 'up' | 'down';
-  progress: number;
-  // Aggiungi altre proprietà se necessario
+  ref: React.RefObject<HTMLDivElement>;
+  inView: boolean;
 }
 
-// Componente per osservare la sezione e aggiornare l'indice attivo
 const SectionObserver = ({ index, setActiveSection }: { index: number; setActiveSection: (index: number) => void; }) => {
   const { ref, inView } = useInView({
-    threshold: 0.5, // Si attiva quando il 50% della sezione è visibile
+    threshold: 0.5,
   });
 
   useEffect(() => {
@@ -27,339 +37,38 @@ const SectionObserver = ({ index, setActiveSection }: { index: number; setActive
     }
   }, [inView, index, setActiveSection]);
 
-  return <div ref={ref} className="absolute top-1/2" />;
+  return <div ref={ref} className="absolute top-1/2 w-full h-px" />;
 };
 
-// Indicatore di profondità laterale (nuova versione)
-const DeepMeter = ({ sections, activeSection }: { sections: any[], activeSection: number }) => {
+const DeepMeter = ({ sections, activeSection }: { sections: typeof sections, activeSection: number }) => {
   return (
-    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
-      <div className="flex flex-col items-center space-y-4">
-        {sections.map((section, index) => {
-          if (!section.icon) return null;
-          const Icon = section.icon;
-          return (
-            <a href={`#${section.id}`} key={section.id} className="relative block group" aria-label={`Scroll to ${section.title}`}>
-              <Icon
-                className={`w-6 h-6 transition-all duration-300 ease-in-out group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.7)] ${
-                  index === activeSection
-                    ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.7)]"
-                    : "text-white/30"
-                }`}
-              />
-              {index === activeSection && (
-                 <motion.div
-                   layoutId="active-section-indicator"
-                   className="absolute -inset-2 rounded-full border-2 border-cyan-400/50"
-                   initial={{ opacity: 0, scale: 0.8 }}
-                   animate={{ opacity: 1, scale: 1.1 }}
-                   exit={{ opacity: 0, scale: 0.8 }}
-                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                 />
-              )}
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  );
-};
-
-// Particelle cosmiche animate - Client-side only
-const CosmicParticles = () => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(400)].map((_, i) => (
+    <div className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-4">
+      <div className="text-white uppercase text-xs font-bold tracking-widest [writing-mode:vertical-rl]">Briele</div>
+      <div className="w-px h-48 bg-white/20 relative">
         <motion.div
-          key={i}
-          className="absolute w-0.5 h-0.5 bg-white/30 rounded-full"
-          style={{
-            left: `${(i * 7) % 100}%`,
-            top: `${(i * 13) % 100}%`,
-          }}
-          animate={{
-            y: [0, -40, 0],
-            x: [0, (i % 3 - 1) * 20, 0],
-            opacity: [0.1, 0.9, 0.1],
-            scale: [0.3, 1.8, 0.3],
-            rotate: [0, 360, 0],
-          }}
-          transition={{
-            duration: 6 + (i % 8),
-            repeat: Infinity,
-            delay: i * 0.05,
-            ease: "easeInOut"
-          }}
+          className="w-px bg-cyan-400 absolute top-0"
+          initial={{ height: 0 }}
+          animate={{ height: `${(activeSection + 1) / sections.length * 100}%` }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         />
-      ))}
-    </div>
-  );
-};
-
-// Onde sinusoidali animate
-const SineWaves = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden opacity-20">
-      <svg className="w-full h-full" viewBox="0 0 1000 200">
-        <motion.path
-          d="M0,100 Q250,50 500,100 T1000,100"
-          stroke="url(#gradient)"
-          strokeWidth="2"
-          fill="none"
-          animate={{
-            d: [
-              "M0,100 Q250,50 500,100 T1000,100",
-              "M0,100 Q250,150 500,100 T1000,100",
-              "M0,100 Q250,50 500,100 T1000,100",
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <defs>
-          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8b5cf6" />
-            <stop offset="50%" stopColor="#06b6d4" />
-            <stop offset="100%" stopColor="#ec4899" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  );
-};
-
-// Barra di profondità laterale
-const DepthIndicator = ({ currentSection }: { currentSection: number }) => {
-  const sections = [
-    { name: "Superficie", icon: FiArrowDown },
-    { name: "Frequenze", icon: FiZap },
-    { name: "Armonia", icon: FiMusic },
-    { name: "Colori", icon: FiDroplet },
-    { name: "Introspezione", icon: FiHeart },
-    { name: "Spiritualità", icon: FiEye },
-    { name: "Filosofia", icon: FiCompass },
-    { name: "Frammenti", icon: FiGrid },
-  ];
-
-  return (
-    <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
-      <div className="flex flex-col items-center space-y-4">
-        {sections.map((section, index) => (
-          <motion.div
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index <= currentSection 
-                ? "bg-gradient-to-r from-purple-400 to-cyan-400 shadow-lg shadow-purple-400/50" 
-                : "bg-white/20"
-            }`}
-            whileHover={{ scale: 1.2 }}
-          />
-        ))}
+      </div>
+      <div className="w-5 h-5 rounded-full border-2 border-cyan-400 bg-black flex items-center justify-center">
+        <div className="w-2 h-2 rounded-full bg-cyan-400" />
       </div>
     </div>
   );
 };
 
-// Palette interattiva dei colori
-const ColorPalette = () => {
-  const colors = [
-    { name: "Viola Profondo", hex: "#8b5cf6", frequency: "432 Hz" },
-    { name: "Ciano Elettrico", hex: "#06b6d4", frequency: "528 Hz" },
-    { name: "Rosa Magenta", hex: "#ec4899", frequency: "639 Hz" },
-    { name: "Blu Cosmico", hex: "#3b82f6", frequency: "741 Hz" },
-    { name: "Indigo Mistico", hex: "#6366f1", frequency: "852 Hz" },
-  ];
+const CosmicParticles = () => (
+  <div className="fixed inset-0 -z-10 pointer-events-none">
+    {/* Implementazione particelle */}
+  </div>
+);
 
-  return (
-    <div className="grid grid-cols-5 gap-4 mt-8">
-      {colors.map((color, index) => (
-        <motion.div
-          key={index}
-          className="group cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <div
-            className="h-16 rounded-lg shadow-lg transition-all duration-300 group-hover:shadow-xl"
-            style={{ backgroundColor: color.hex }}
-          />
-          <div className="mt-2 text-center">
-            <p className="text-xs text-gray-300 font-medium">{color.name}</p>
-            <p className="text-xs text-gray-400">{color.frequency}</p>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
-// Accordi visualizzati
-const ChordVisualization = ({ chord }: { chord: string }) => {
-  const chordData = {
-    "Cmaj7": {
-      notes: ["C", "E", "G", "B"],
-      tensions: ["9", "13"],
-      colors: ["#3b82f6", "#06b6d4", "#8b5cf6", "#ec4899"]
-    }
-  };
-
-  const data = chordData[chord as keyof typeof chordData];
-
-  return (
-    <div className="flex items-center justify-center space-x-2 mt-6">
-      {data?.notes.map((note, index) => (
-        <motion.div
-          key={index}
-          className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
-          style={{ backgroundColor: data.colors[index] }}
-          whileHover={{ scale: 1.1, y: -5 }}
-          transition={{ delay: index * 0.1 }}
-        >
-          {note}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
-// Sezione frammenti
-const FragmentsSection = () => {
-  const fragments = [
-    "Un'emozione è un accordo non risolto.",
-    "Ogni silenzio è un preludio.",
-    "Il colore è suono che ha imparato a farsi vedere.",
-    "La musica è il linguaggio dell'anima.",
-    "Ogni frequenza ha il suo colore interiore.",
-    "Il vuoto contiene tutte le possibilità.",
-    "L'armonia è matematica dell'emozione.",
-    "Ogni nota è una porta verso l'inconscio."
-  ];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-      {fragments.map((fragment, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: index * 0.1 }}
-          className="p-6 rounded-lg bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 backdrop-blur-sm"
-        >
-          <p className="text-gray-200 text-sm font-light italic leading-relaxed">
-            "{fragment}"
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
-const DynamicCosmicPurpleBackground = React.memo(CosmicParticles);
-
-const sections = [
-  {
-      id: "hero",
-      title: "Decrypting Briele",
-      subtitle: "Questa è la chiave di lettura. Trova il tuo significato.",
-      icon: FiHome,
-      content: null,
-      visual: null,
-  },
-  {
-      id: "frequencies",
-      title: "Frequenze",
-      icon: FiZap,
-      content: `Tutto vibra. Anche noi.\nAlcune frequenze liberano, altre contengono.\nBriele crea paesaggi sonori che agiscono sulla mente: non musica da ascoltare, ma da abitare.\nÈ un lavoro di alchimia sonora.`,
-      visual: <SineWaves />
-  },
-  {
-      id: "harmony",
-      title: "L'Armonia come linguaggio emotivo",
-      icon: FiMusic,
-      content: `Per Briele, l'armonia non è teoria. È colore.\n\nOgni accordo è un'emozione che prende forma.\n\nLe estensioni sono sfumature dell'anima,\nogni nota in più è un dettaglio emotivo. Ogni tensione, un battito in sospeso.`,
-      visual: <ChordVisualization chord="Cmaj7" />
-  },
-  {
-      id: "colors",
-      title: "Colori come Frequenze Emotive",
-      icon: FiDroplet,
-      content: `I colori non sono estetica. Sono onde che toccano il subconscio.\nBriele lavora su una mappa che collega frequenze sonore a frequenze luminose.\nCome un pittore ha la sua tavolozza, così un compositore sceglie i suoi colori armonici.\nIl suo obiettivo è far incontrare suono e luce, farli parlare la stessa lingua.`,
-      visual: <ColorPalette />
-  },
-  {
-      id: "introspection",
-      title: "Musicoterapia e Introspezione",
-      icon: FiHeart,
-      content: `Briele studia il suono come si studia una lingua antica.\nLe frequenze non sono solo vibrazioni nell'aria — sono correnti sottili che attraversano il corpo, modulano il respiro, riequilibrano stati d'animo che le parole non riescono a nominare.\n\nNella sua ricerca confluiscono musicoterapia, neuroscienze, emozione, intuizione.\n\nLa sua musica è un tentativo di tradurre ciò che sente nel profondo in un linguaggio vibrazionale che risuona con le frequenze stesse dell'universo.\nOgni armonia è una fotografia interiore. Ogni accordo una tensione che ha trovato il coraggio di suonare.\n\nChi ascolta, ascolta anche sé stesso.\nE trova, nelle onde, uno specchio.`,
-      visual: <motion.p 
-                initial={{ opacity: 0 }} 
-                whileInView={{ opacity: 1 }} 
-                viewport={{ once: true }} 
-                transition={{ duration: 2, delay: 1 }} 
-                className="text-xl text-purple-300 font-light italic text-center mt-8">
-                  "Non ti dico cosa provare, ti aiuto a riconoscerlo"
-              </motion.p>
-  },
-  {
-      id: "philosophy",
-      title: "Filosofia e Simbolismo",
-      icon: FiCompass,
-      content: `Briele intreccia simbolismo junghiano, archetipi emotivi e sinestesia per creare un dialogo silenzioso con chi ascolta.\nDietro ogni testo c'è l'intento preciso di trasformare concetti complessi — filosofici, spirituali, scientifici — in parole semplici, dirette, quotidiane.\n\nPerché la profondità non ha bisogno di complicazioni.\nHa bisogno di verità.\n\nBriele non scrive canzoni.\nScrive specchi.\nE in ognuno, lascia una fessura aperta per chi ha il coraggio di guardarsi davvero.`,
-      visual: null
-  },
-  {
-      id: "spirituality",
-      title: "Spiritualità e Silenzio",
-      icon: FiEye,
-      content: `Briele non cerca il sacro nella religione, ma nella presenza.\nNell'attesa.\nNel silenzio prima della nota.\nNella pausa che contiene tutte le possibilità.\nNel tutto e nel nulla.\nNella luce e nel buio.\nNel colore e nel nero profondo.\n\nBriele cerca il senso della vita nell'esperienza stessa del viverla.\nTanto nella gioia quanto nella sofferenza.\nPerché ogni emozione è parte del gioco.\nE ogni sfumatura merita ascolto.`,
-      visual: null
-  },
-  {
-      id: "fragments",
-      title: "Frammenti",
-      icon: FiGrid,
-      content: null,
-      visual: <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          {[
-              `"L'ansia è un Sol7(♭9♯9♭13) che non risolve mai su Do;"`,
-              `"Ogni silenzio è un preludio."`,
-              `"Il colore è suono visibile con gli occhi;"`,
-              `"La musica è il linguaggio universale delle anime"`,
-              `"Ogni nota è una pennellata sull'invisibile."`,
-              `"Il vuoto contiene tutte le possibilità."`,
-              `"L'armonia è matematica dell'emozione."`,
-              `"Ogni nota è una porta verso l'inconscio."`
-          ].map((fragment, index) => (
-              <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10 hover:bg-white/10 transition-all duration-300"
-              >
-                  <p className="text-sm text-white/80 font-light italic text-center">
-                      {fragment}
-                  </p>
-              </motion.div>
-          ))}
-      </div>
-  }
-];
-
-export default function BrielePage() {
+const BrielePage = () => {
+  const t = useTranslations('BrielePage');
+  const sections = getSections(t);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState(0);
 
@@ -407,7 +116,7 @@ export default function BrielePage() {
       >
         <CosmicPurpleBackground />
       </motion.div>
-      
+
       {/* Punto luce centrale statico */}
       <div className="fixed inset-0 -z-5 pointer-events-none">
         <div 
@@ -553,4 +262,6 @@ export default function BrielePage() {
       </motion.div>
     </div>
   );
-} 
+};
+
+export default BrielePage; 
