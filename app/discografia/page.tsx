@@ -6,7 +6,6 @@ import { FiX, FiExternalLink } from 'react-icons/fi';
 import { FaSpotify, FaApple, FaAmazon, FaDeezer } from 'react-icons/fa';
 import { SiItunes } from 'react-icons/si';
 import CosmicPurpleBackground from '../../components/CosmicPurpleBackground';
-import ShapeBlur from '../../components/ShapeBlur';
 import Link from 'next/link';
 
 interface Track {
@@ -224,11 +223,6 @@ export default function DiscografiaPage() {
       <div className="fixed inset-0 -z-20 bg-[#05010a]" />
       <div className="fixed inset-0 -z-10">
         <CosmicPurpleBackground />
-      </div>
-
-      {/* ShapeBlur (desktop only) */}
-      <div className="hidden lg:block fixed inset-0 -z-5">
-        <ShapeBlur />
       </div>
 
       {/* Back to home */}
