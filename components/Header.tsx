@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { FiHome, FiUnlock, FiUser, FiInstagram, FiYoutube, FiMusic } from 'react-icons/fi';
 import { FaTiktok, FaSpotify } from "react-icons/fa";
 import { usePathname } from 'next/navigation';
+import {useTranslations} from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const socialLinks = [
   { icon: FiInstagram, href: "https://www.instagram.com/briele.briele/" },
@@ -29,12 +31,13 @@ const SocialLink = ({ href, icon: Icon }: { href: string; icon: React.ElementTyp
 
 const Header = () => {
   const pathname = usePathname();
+  const t = useTranslations('Header');
 
   const navLinks = [
-    { href: '/', icon: FiHome, label: 'Home' },
-    { href: '/briele', icon: FiUnlock, label: 'Briele' },
-    { href: '/gabriele-dagostino', icon: FiUser, label: 'Gabriele D\'Agostino' },
-    { href: '/discografia', icon: FiMusic, label: 'Discografia' },
+    { href: '/', icon: FiHome, label: t('navHome') },
+    { href: '/briele', icon: FiUnlock, label: t('navBriele') },
+    { href: '/gabriele-dagostino', icon: FiUser, label: t('navGabriele') },
+    { href: '/discografia', icon: FiMusic, label: t('navDiscography') },
   ];
 
   return (
@@ -47,11 +50,12 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Social a destra */}
+        {/* Social e Lingua a destra */}
         <div className="flex items-center gap-5">
           {socialLinks.map((link, index) => (
             <SocialLink key={index} href={link.href} icon={link.icon} />
           ))}
+          <LanguageSwitcher />
         </div>
       </div>
     </header>

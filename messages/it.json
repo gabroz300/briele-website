@@ -1,0 +1,29 @@
+{
+  "Header": {
+    "navHome": "Home",
+    "navBriele": "Briele",
+    "navGabriele": "Gabriele D'Agostino",
+    "navDiscography": "Discografia"
+  },
+  "Footer": {
+    "rights": "Tutti i diritti riservati."
+  },
+  "Hero": {
+    "title": "Briele",
+    "decrypting": "Decrypting Briele"
+  },
+  "MusicSection": {
+    "title": "Musica"
+  },
+  "VideoSection": {
+    "title": "Video",
+    "journey": "Iceland - Ambient Journey"
+  },
+  "SocialLinks": {
+    "title": "Social"
+  },
+  "DiscographyPage": {
+    "title": "Discografia",
+    "description": "Esplora la musica di Briele attraverso tutti i brani pubblicati"
+  }
+} 
