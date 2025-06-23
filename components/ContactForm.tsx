@@ -1,14 +1,13 @@
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { sendEmail, FormState } from '@/app/[locale]/gabriele-dagostino/actions';
-import { useEffect, useRef } from 'react';
+import { useFormStatus } from 'react-dom';
+import { useActionState, useEffect, useRef } from 'react';
+import { sendEmail, FormState } from '../app/gabriele-dagostino/actions';
 import { FiSend } from 'react-icons/fi';
-import { FaPaperPlane, FaSpinner } from 'react-icons/fa';
 
 const initialState: FormState = {
+  success: false,
   message: '',
-  status: 'idle',
 };
 
 function SubmitButton() {
@@ -35,27 +34,15 @@ function SubmitButton() {
   );
 }
 
-export function ContactForm({
-  dictionary,
-}: {
-  dictionary: {
-    name: string;
-    email: string;
-    message: string;
-    send: string;
-    sending: string;
-    success: string;
-    error: string;
-  };
-}) {
-  const [state, formAction] = useFormState(sendEmail, initialState);
+export const ContactForm = () => {
+  const [state, formAction] = useActionState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.status === 'success') {
+    if (state.success) {
       formRef.current?.reset();
     }
-  }, [state.status]);
+  }, [state.success]);
 
   return (
     <form ref={formRef} action={formAction} className="space-y-6 w-full max-w-lg mx-auto">
@@ -91,10 +78,10 @@ export function ContactForm({
       </div>
       <SubmitButton />
       {state.message && (
-        <p className={`mt-4 text-center text-sm ${state.status === 'success' ? 'text-green-400' : 'text-red-400'}`}>
+        <p className={`mt-4 text-center text-sm ${state.success ? 'text-green-400' : 'text-red-400'}`}>
           {state.message}
         </p>
       )}
     </form>
   );
-} 
+}; 

@@ -1,11 +1,6 @@
-'use client';
-
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 
 const Footer = () => {
-  const t = useTranslations('Footer');
-  
   return (
     <footer className="py-10 px-4 text-center border-t border-gray-700">
       <div className="max-w-4xl mx-auto">
@@ -29,7 +24,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Gabriele d'Agostino. {t('rights')}
+          &copy; {new Date().getFullYear()} Gabriele d'Agostino. Tutti i diritti riservati.
         </p>
       </div>
     </footer>

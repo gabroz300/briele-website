@@ -8,7 +8,7 @@ import DecryptedText from "./DecryptedText";
 import TerminalPopup from "./TerminalPopup";
 import { useRouter } from "next/navigation";
 
-const Hero = ({ title, subtitle }: { title: string; subtitle: string }) => {
+const Hero = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -105,7 +105,7 @@ const Hero = ({ title, subtitle }: { title: string; subtitle: string }) => {
         >
           {showDecrypting ? (
             <span className="text-6xl md:text-8xl font-bold">
-              {subtitle}
+              Decrypting Briele
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -117,7 +117,7 @@ const Hero = ({ title, subtitle }: { title: string; subtitle: string }) => {
             </span>
           ) : (
             <DecryptedText 
-              text={title}
+              text="Briele"
               speed={80}
               maxIterations={6}
               className="text-6xl md:text-8xl font-bold"
