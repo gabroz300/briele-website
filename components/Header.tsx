@@ -34,6 +34,7 @@ const Header = () => {
     { href: '/', icon: FiHome, label: 'Home' },
     { href: '/briele', icon: FiUnlock, label: 'Briele' },
     { href: '/gabriele-dagostino', icon: FiUser, label: 'Gabriele D\'Agostino' },
+    { href: '/discografia', icon: FiMusic, label: 'Discografia' },
   ];
 
   return (
