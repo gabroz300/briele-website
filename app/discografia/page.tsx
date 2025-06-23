@@ -52,7 +52,7 @@ const tracks: Track[] = [
   {
     id: 'stare-meglio',
     title: 'Stare Meglio',
-    cover: '/covers/stare-bene.jpg',
+    cover: '/covers/stare-meglio.JPG',
     year: 2024,
     links: {
       spotify: 'https://open.spotify.com/album/3vZQ4MvVhmbSMKLKf7kq6u',
@@ -65,7 +65,7 @@ const tracks: Track[] = [
   {
     id: 'stare-male',
     title: 'Stare Male',
-    cover: '/covers/stare-bene.jpg',
+    cover: '/covers/stare-male.jpg',
     year: 2024,
     links: {
       spotify: 'https://open.spotify.com/album/62gMFYp7rJmP7CA2nzlRWg',
