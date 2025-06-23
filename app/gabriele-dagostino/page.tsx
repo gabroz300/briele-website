@@ -46,7 +46,7 @@ export default function GabrieleDagostinoPage() {
              transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             <h1 className="text-5xl md:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-              Gabriele D'Agostino
+              Gabriele d'Agostino
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-gray-300 font-light tracking-wider">
               Producer – Composer – Developer
@@ -57,7 +57,7 @@ export default function GabrieleDagostinoPage() {
         <Section>
           <SectionTitle icon={FiUser} title="Profilo" />
           <div className="space-y-4 text-lg text-gray-200 leading-relaxed font-light border-l-2 border-cyan-400/50 pl-6">
-            <p>Gabriele D'Agostino è un artista e produttore multidisciplinare nato nel 2002.</p>
+            <p>Gabriele d'Agostino è un artista e produttore multidisciplinare nato nel 2002.</p>
             <p>Attivo sotto il nome artistico "Briele", si muove tra musica, tecnologia e linguaggio visivo, con una forte attenzione alla dimensione emozionale e percettiva.</p>
             <p>Il suo percorso fonde formazione classica, ricerca personale e una laurea in Music Production conseguita presso la University of Chichester – Sonus Factory.</p>
             <p>Si occupa di scrittura, produzione, mix, sound design, sviluppo software e comunicazione strategica.</p>
@@ -116,4 +116,32 @@ export default function GabrieleDagostinoPage() {
       </main>
     </div>
   );
-} 
+}
+
+export const metadata = {
+  title: "Gabriele d'Agostino | Bio, songwriting, sound design",
+  description: "Scopri la biografia professionale di Gabriele d'Agostino: songwriting, sound design, produzione musicale e innovazione creativa.",
+  keywords: ["Gabriele d'Agostino", "bio", "songwriting", "sound design", "produzione musicale", "Briele"],
+  openGraph: {
+    title: "Gabriele d'Agostino | Bio, songwriting, sound design",
+    description: "Scopri la biografia professionale di Gabriele d'Agostino: songwriting, sound design, produzione musicale e innovazione creativa.",
+    url: "https://www.brielebriele.com/gabriele-dagostino",
+    siteName: "Briele",
+    images: [
+      {
+        url: "/covers/lenti.png",
+        width: 1200,
+        height: 630,
+        alt: "Gabriele d'Agostino bio copertina"
+      }
+    ],
+    locale: "it_IT",
+    type: "profile"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gabriele d'Agostino | Bio, songwriting, sound design",
+    description: "Scopri la biografia professionale di Gabriele d'Agostino: songwriting, sound design, produzione musicale e innovazione creativa.",
+    images: ["/covers/lenti.png"]
+  }
+}; 
